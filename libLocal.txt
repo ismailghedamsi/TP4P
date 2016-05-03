@@ -1,0 +1,30 @@
+0
+FILE_NAME
+/media/portable/DONNEES/DONNEES/Dropbox/cours/420_201/tps/tpFinal/h2016/corrige/src/../mediaFiles/angrybirds-tlr3_h480p.mp4
+DURATION 
+159275
+YEAR 
+2016
+TITLE 
+angrybirds-tlr3_h480p
+FRAME_RATE
+1000
+HEIGHT 
+720
+WIDTH 
+1280
+
+1
+FILE_NAME
+/media/portable/DONNEES/DONNEES/Dropbox/cours/420_201/tps/tpFinal/h2016/corrige/mediaFiles/BlackbirdBlackbird_SummerHeart.mp3
+DURATION 
+178
+YEAR 
+0
+TITLE 
+Summer Heart
+ARTIST 
+Blackbird Blackbird
+ALBUM 
+Blackbird Blackbird
+
