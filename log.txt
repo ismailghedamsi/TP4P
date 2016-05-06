@@ -1,0 +1,59 @@
+commit 39a087104f8fa3039040e1609e98f9d381c6cf15
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Fri May 6 15:24:56 2016 -0400
+
+    Ajout des getters pour la classe Media
+
+commit cc6b76e4c57eb82963af802ec9c8b46a6308d81f
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Fri May 6 14:52:47 2016 -0400
+
+    Add setters for Media class
+
+commit 4d9fbf49aa33596bd798addd695a496d49e3e2c8
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Fri May 6 14:42:08 2016 -0400
+
+    Ajout des constructeurs de la classe media
+
+commit 38aa119624221693de3ddbde0bbbd6c22a694613
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Fri May 6 14:38:41 2016 -0400
+
+    Ajout des variables membres
+
+commit dd0558a027c7271d6f70a542a465254f32d9804b
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Fri May 6 14:37:22 2016 -0400
+
+    Ajout des variables membres
+
+commit 09ee8844638857211ce5de6a98e6851701491526
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Tue May 3 16:59:14 2016 -0400
+
+    Add LibraryDescriptorGenerator folder
+
+commit 7dc8de5f08a0ecfea12d2d37ee97bc9f0d4744fc
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Tue May 3 16:49:38 2016 -0400
+
+    add folder mediaFiles and mediaFilesServeur
+
+commit 18b859662b360512f38f269849956e453d63be57
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Tue May 3 16:41:57 2016 -0400
+
+    Add sourceCode folder
+
+commit e2a749a00a851919f0bcd61239d960b98a336e23
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Tue May 3 16:37:25 2016 -0400
+
+    Add libLocal.txt and libServer.txt
+
+commit 4e659e8bed734ff3dff57b5dbc115f3a9519e4ac
+Author: Ismail Ghedamsi <ismailghedamsi@gmail.com>
+Date:   Tue May 3 13:37:48 2016 -0400
+
+    add enonce.pdf
