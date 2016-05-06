@@ -1,6 +1,6 @@
 public abstract class Media{
 	protected String mFileName;
-	protected int mDuration;
+	protected int mDuration; //en seconde
 	protected int mYear;
 	protected String mTitle;
 	
@@ -19,7 +19,29 @@ public abstract class Media{
 		mTitle = pMedia.mTitle;
 	} 
 	
+    public String[] getFullArrayInfo(){
+		return null;
+	}
+	
 	public void setFileName(String pFileName){
 		mFileName = pFileName;
 	}
+	
+	public String getFileName(){
+		return mFileName;
+	}
+	
+	public int getDuration() {
+		return mDuration;
+	}
+	
+	public String getTitle(){
+		return mTitle;
+	}
+	
+	public int getYear(){
+		return mYear;
+	}
+	
+
 }
