@@ -1,4 +1,5 @@
 public class MediaVideo extends Media{
-	private String mArtist;
-	private int mAlbum;
+	private String mFrameRate;
+	private int mWidth;
+	private int mHeight;
 }
