@@ -6,6 +6,8 @@ public abstract class Media{
 	protected int mYear;
 	protected String mTitle;
 	
+	public Media(){
+	}
 	
 	public Media(String pFileName,int pDuration,int pYear,String pTitle){
 		mFileName = pFileName;
@@ -21,20 +23,7 @@ public abstract class Media{
 		mTitle = pMedia.mTitle;
 	} 
 	
-    public static String[] getFullArrayInfo(){
-		String[] mediaTas;
-		int mediaType=-1;
-		try{
-			Scanner sc = new Scanner(new File("libLocal.txt"));
-			while(sc.hasNext()){
-				mediaType = Integer.valueOf(sc.next());
-			}
-	    }catch(IOException ioe){
-			ioe.getMessage();
-		}
-		System.out.println("Fichier "+mediaType);
-		return null;
-	}
+    public abstract String[] getFullArrayInfo();
 	
 	public void setFileName(String pFileName){
 		mFileName = pFileName;
@@ -56,11 +45,7 @@ public abstract class Media{
 		return mYear;
 	}
 	
-	/*Main de debug
-	 * */
-	public static void main(String[] args){
-		Media.getFullArrayInfo();
-	}
+	
 	
 
 }

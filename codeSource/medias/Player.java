@@ -15,6 +15,7 @@ public class Player{
     private int mCurrentPlayed;
     //la connexion vers le serveur
     //private MediaClientSocket mClient;
+    private String mFileNameLocalLib;
     /**
     * Constructeur de la classe qui prend en parametre le fichier de 
     * description de la librairie locale du client
@@ -22,7 +23,7 @@ public class Player{
     * @param pFileNameLocalLib le fichier de description de la librairie locale
     */
     public Player(String pFileNameLocalLib){
-
+       mFileNameLocalLib = pFileNameLocalLib; 
     }
     /**
     * Constructeur de la classe qui initialise la librairie locale, et permet une connexion
