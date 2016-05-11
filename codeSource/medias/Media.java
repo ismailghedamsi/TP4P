@@ -1,3 +1,4 @@
+package medias;
 import java.io.*;
 import java.util.*;
 public abstract class Media{
@@ -10,7 +11,7 @@ public abstract class Media{
 	}
 	
 	public Media(String pFileName,int pDuration,int pYear,String pTitle){
-		mFileName = pFileName;
+		mFileName = pFileName; 
 		mDuration = pDuration;
 		mYear = pYear;
 		mTitle = pTitle;
@@ -45,6 +46,10 @@ public abstract class Media{
 		return mYear;
 	}
 	
+	
+	public String toString(){
+		return "FILE_NAME\n"+mFileName+"\nDURATION\n"+mDuration+"\nYEAR\n"+mYear+"\nTITLE"+mTitle;
+	}
 	
 	
 
