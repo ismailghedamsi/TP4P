@@ -5,8 +5,7 @@ public  class MediaVideo extends Media implements MediaConstant{
 	private int mFrameRate;
 	private int mWidth;
 	private int mHeight;
-	 private int MP3=1;
-	  private int MP4=0;
+    private final int NBMETADATA=6;
 
 	public MediaVideo(String pFileName,int pDuration,int pYear,String pTitle,int pFrameRate,int pWidth,int pHeight){
 		super(pFileName,pDuration,pYear,pTitle);
@@ -23,27 +22,40 @@ public  class MediaVideo extends Media implements MediaConstant{
 	  }
 	  
 	   public MediaVideo(Scanner pScan){
-		       //int typeMedia;
-		       //typeMedia = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mFileName = pScan.nextLine();
-			   pScan.nextLine();
-			   mDuration = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mYear = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mTitle = pScan.nextLine();
-			   pScan.nextLine();
-			   mFrameRate = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mWidth = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mHeight = Integer.valueOf(pScan.nextLine());
+
+			   String currantLine = "_" ;
+			   while(!currantLine.isEmpty()){
+				   currantLine = pScan.nextLine();
+				   if(currantLine.trim().equals("FILE_NAME")){
+					   mFileName = pScan.nextLine();
+				   }else if(currantLine.trim().equals("DURATION")){
+					    mDuration = Integer.valueOf(pScan.nextLine());
+				   }else if(currantLine.trim().equals("YEAR")){
+					   mYear = Integer.valueOf(pScan.nextLine());
+				   }else if(currantLine.trim().equals("TITLE")){
+					   mTitle = pScan.nextLine();
+				   }else if(currantLine.trim().equals("FRAME_RATE")){
+					   mFrameRate = Integer.valueOf(pScan.nextLine());
+				   }else if(currantLine.trim().equals("HEIGHT")){
+					   mHeight = Integer.valueOf(pScan.nextLine());
+				   }else if(currantLine.trim().equals("WIDTH")){
+					   mWidth = Integer.valueOf(pScan.nextLine());
+				   }
+				   
+			   }
 	       }
+	    
 	    
 	
 	public String[] getFullArrayInfo(){
-		return null;
+		String[] metaDataContainer = new String[NBMETADATA];
+		metaDataContainer[TITLE]=mTitle;
+		metaDataContainer[YEAR]=mYear+"";
+		metaDataContainer[DURATION]=mDuration+"";
+		metaDataContainer[FRAME_RATE]=mFrameRate+"";
+		metaDataContainer[DIMENSION]=mWidth+"X"+mHeight;
+		metaDataContainer[FILE_NAME]=mFileName;
+		return metaDataContainer;
 	}
 	
 	public String toString(){
@@ -59,7 +71,7 @@ public  class MediaVideo extends Media implements MediaConstant{
 			 }
 			 Media mv = new MediaVideo("medias/vid1.mp4",3,2000,"am i a psycho",300,600,600);	
 			 Media mv2 = new MediaVideo(pScan);
-			 System.out.println(mv2);
+			 System.out.println(mv2.toString());
 
 	}
 	
