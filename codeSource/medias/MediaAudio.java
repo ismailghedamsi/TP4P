@@ -3,11 +3,9 @@ import java.io.*;
 import java.util.*;
 
 public  class MediaAudio extends Media implements MediaConstant{
-	  private int MP3=1;
-	  private int MP4=0;
 	  private String mArtist;
 	  private String mAlbum;
-	  
+	  private final int NBMETADATA=5;
 	  public MediaAudio(String pFileName,int pDuration,int pYear,String pTitle,String pArtist,String pAlbum){
 		  super(pFileName,pDuration,pYear,pTitle);
 		  mArtist = pArtist;
@@ -23,7 +21,8 @@ public  class MediaAudio extends Media implements MediaConstant{
 	  public MediaAudio(Scanner pScan){
            //int typeMedia;
 		      // typeMedia = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
+		      
+			   /*pScan.nextLine();
 			   mFileName = pScan.nextLine();
 			   pScan.nextLine();
 			   mDuration = Integer.valueOf(pScan.nextLine());
@@ -34,21 +33,55 @@ public  class MediaAudio extends Media implements MediaConstant{
 			   pScan.nextLine();
 			   mArtist = pScan.nextLine();
 			   pScan.nextLine();
-			   mAlbum = pScan.nextLine();
+			   mAlbum = pScan.nextLine();*/
+			   
+			  String currantLine = "_" ;
+		       //System.out.println("currantLine "+currantLine);
+		       
+		        while(!currantLine.isEmpty()){
+				   currantLine = pScan.nextLine();
+				   if(currantLine.trim().equals("FILE_NAME")){
+					   mFileName = pScan.nextLine();
+				   }else if(currantLine.trim().equals("DURATION")){
+					    mDuration = Integer.valueOf(pScan.nextLine());
+				   }else if(currantLine.trim().equals("YEAR")){
+					   mYear = Integer.valueOf(pScan.nextLine());
+				   }else if(currantLine.trim().equals("TITLE")){
+					   mTitle = pScan.nextLine();
+				   }else if(currantLine.trim().equals("ARTIST")){
+					   mArtist = pScan.nextLine();
+				   }else if(currantLine.trim().equals("ALBUM")){
+					   mAlbum = pScan.nextLine();
+				   }
+				   
+			   }
+			   
+			   
 			   
 	  }
 	
+	/**
+	 * cette fonction permet de retourner, sous la forme
+       d’un tableau de chaînes de caractères, les différents champs définissant le média. Vous
+       trouverez dans l’interface MediaConstants les valeurs suivantes
+	 * */
 	public String[] getFullArrayInfo(){
-		return null;
+		String[] id3container = new String[NBMETADATA]; //contient les metadonne du fichier audio
+		id3container[TITLE]=mTitle;
+		id3container[YEAR]=mYear+"";
+		id3container[DURATION]=mDuration+"";
+		id3container[ARTIST]=mArtist+"";
+		id3container[ALBUM]=mAlbum+"";
+		id3container[FILE_NAME]=mFileName;
+		return id3container;
 	}
 	
-	@Override
 	 public String toString(){
 		return super.toString()+"\nARTIST\n"+mArtist+"\nALBUM\n"+mAlbum;
 	}
 	
 	//Main de debeugage
-	/*public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException{
 		Scanner pScan=null;
 			  pScan = new Scanner(new File("../libLocal.txt"));
 			 if(pScan == null){
@@ -59,6 +92,6 @@ public  class MediaAudio extends Media implements MediaConstant{
 			 //System.out.println(ma);
 			 System.out.println(ma2);
 
-	}*/
+	}
 	  
 }
