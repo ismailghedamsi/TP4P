@@ -45,7 +45,17 @@ public  class MediaVideo extends Media implements MediaConstant{
 			   }
 	       }
 	    
-	    
+	public int getFrameRate(){
+		return mFrameRate;
+	}  
+	
+	public int getWidth(){
+		return mWidth;
+	}
+	
+	public int getHeight(){
+		return mHeight;
+	}
 	
 	public String[] getFullArrayInfo(){
 		String[] metaDataContainer = new String[NBMETADATA];
