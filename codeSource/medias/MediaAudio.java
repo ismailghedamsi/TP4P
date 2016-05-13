@@ -19,25 +19,7 @@ public  class MediaAudio extends Media implements MediaConstant{
 	  }
 	  
 	  public MediaAudio(Scanner pScan){
-           //int typeMedia;
-		      // typeMedia = Integer.valueOf(pScan.nextLine());
-		      
-			   /*pScan.nextLine();
-			   mFileName = pScan.nextLine();
-			   pScan.nextLine();
-			   mDuration = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mYear = Integer.valueOf(pScan.nextLine());
-			   pScan.nextLine();
-			   mTitle = pScan.nextLine();
-			   pScan.nextLine();
-			   mArtist = pScan.nextLine();
-			   pScan.nextLine();
-			   mAlbum = pScan.nextLine();*/
-			   
 			  String currantLine = "_" ;
-		       //System.out.println("currantLine "+currantLine);
-		       
 		        while(!currantLine.isEmpty()){
 				   currantLine = pScan.nextLine();
 				   if(currantLine.trim().equals("FILE_NAME")){
@@ -53,11 +35,15 @@ public  class MediaAudio extends Media implements MediaConstant{
 				   }else if(currantLine.trim().equals("ALBUM")){
 					   mAlbum = pScan.nextLine();
 				   }
-				   
 			   }
-			   
-			   
-			   
+	  }
+	  
+	  public String getArtist(){
+		  return mArtist;
+	  }
+	  
+	  public String getAlbum(){
+		  return mAlbum;
 	  }
 	
 	/**
