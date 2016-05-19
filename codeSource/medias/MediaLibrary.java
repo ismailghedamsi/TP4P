@@ -22,11 +22,14 @@ public class MediaLibrary{
 				 nouveauMedia = new MediaAudio(pScan);
 				  mMediaList.add(nouveauMedia);
 			 }
-			 pScan.nextLine(); // lire la ligne vide
+			
 		 }
 	}
 	
-	public void remove(int pIndex){
+	public void remove(int pIndex) throws ArrayIndexOutOfBoundsException{
+		if(pIndex<0 || pIndex>mMediaList.size()){
+			throw new ArrayIndexOutOfBoundsException("Le media a supprimer n'existe pas");
+		}
 		mMediaList.remove(pIndex);
 	}
 	
@@ -42,6 +45,17 @@ public class MediaLibrary{
 		return mMediaList.get(pIdx);
 	}
 	
+	public String[] getBasicFieldInfo(){
+		String[] basicFiled = {"Titre","Annee","Duree"};
+		
+		return basicFiled;
+	}
+	
+	public String[] getAudioFiledInfo(){
+		String[] audioInfo = {"Titre","Annee","Duree","Artiste","Album","ficher"};
+		return audioInfo;
+	}
+	
 	public static void main(String[] args) throws IOException{
 		Scanner pScan=null;
 			 pScan = new Scanner(new File("../libLocal.txt"));
@@ -52,5 +66,6 @@ public class MediaLibrary{
 			  for(Media currentMedia : ml1.mMediaList){
 				  System.out.println(currentMedia);
 			  }
+			  
 	}
 }
