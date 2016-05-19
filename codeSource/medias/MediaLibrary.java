@@ -46,14 +46,18 @@ public class MediaLibrary{
 	}
 	
 	public String[] getBasicFieldInfo(){
-		String[] basicFiled = {"Titre","Annee","Duree"};
+		String[] basicField = {"Titre","Annee","Duree"};
 		
-		return basicFiled;
+		return basicField;
 	}
 	
 	public String[] getAudioFiledInfo(){
-		String[] audioInfo = {"Titre","Annee","Duree","Artiste","Album","ficher"};
-		return audioInfo;
+		String[] audioField = {"Titre","Annee","Duree","Artiste","Album","ficher"};
+		return audioField;
+	}
+	
+	public String[] getVideoFieldInfo(){
+		String[] videoField = {"Titre","Annee","Duree","Frequance de trame","Dimention","ficher"};
 	}
 	
 	public static void main(String[] args) throws IOException{
