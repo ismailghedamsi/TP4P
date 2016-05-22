@@ -48,7 +48,7 @@ public abstract class Media{
 	
 	
 	public String toString(){
-		return "FILE_NAME\n"+mFileName+"\nDURATION\n"+mDuration+"\nYEAR\n"+mYear+"\nTITLE"+mTitle;
+		return "FILE_NAME\n"+mFileName+"\nDURATION\n"+mDuration+"\nYEAR\n"+mYear+"\nTITLE\n"+mTitle;
 	}
 	
 	
