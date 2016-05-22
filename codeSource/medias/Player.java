@@ -1,14 +1,14 @@
 package medias;
-import sockets.*;
+//import sockets.*;
 import java.util.*;
 import java.io.*;
 public class Player{
     //la librairie locale du client
-    //private MediaLibrary mLocalLib;
+    private MediaLibrary mLocalLib;
     //la librairie du serveur
     //private MediaLibrary mServerLib;
     //la playlist courante
-    //private MediaLibrary mPlayList;
+    private MediaLibrary mPlayList;
     //les fichiers recus du serveur seront sauvegardes dans ce repertoire
     private static final String TMP_DIRECTORY = "./tmp";
     //l'index, dans la playlist, du fichier en train de jouer. 
@@ -23,7 +23,19 @@ public class Player{
     * @param pFileNameLocalLib le fichier de description de la librairie locale
     */
     public Player(String pFileNameLocalLib){
+		Scanner pScan;
        mFileNameLocalLib = pFileNameLocalLib; 
+       try{
+		   pScan = new Scanner(new File("../libLocal.txt"));
+		     mLocalLib = new MediaLibrary(pScan);
+	   }catch(IOException ioe){
+		   ioe.getMessage();
+	   }
+       mCurrentPlayed=-1;
+     
+       
+       mPlayList = new MediaLibrary();
+       
     }
     /**
     * Constructeur de la classe qui initialise la librairie locale, et permet une connexion
@@ -40,6 +52,7 @@ public class Player{
     * rien si l'index est invalide
     */
     public void deleteFromPlaylist(int pIdx){
+		mPlayList.remove(pIdx);
     }
     /**
     * Fonction d'acces au nom du fichier complet (path+nom fichier) du media 
@@ -47,7 +60,7 @@ public class Player{
     * @return String le nom du fchier 
     */
     public String getCurrentFileNamePlayed(){
-        return null;
+        return mPlayList.get(mCurrentPlayed).getFileName();
     }
     /**
     * Fonction d'acces au nom d'un fichier donne d'une librairie donne
@@ -56,13 +69,23 @@ public class Player{
     * @return le nom du fichier 
     */
     public String getFileNameFromMedia(int pTypeLib, int pIdx){
-        return null;
+		if(pTypeLib == MediaConstant.LOCAL){
+			return mLocalLib.get(pIdx).getTitle();
+		}else if(pTypeLib == MediaConstant.PLAYLIST){
+			return mPlayList.get(pIdx).getTitle();
+		}
+        return mPlayList.get(pIdx).getTitle();
     }
     /**
     * Fonction permettant de changer l'index en train de jouer pour le suivant. 
     * Si on est a la fin de la playlist, on recommence au debut
     */
     public void next(){
+		if(mCurrentPlayed < mPlayList.getMediaList().size()){
+			mCurrentPlayed++;
+		}else{
+			mCurrentPlayed=0;
+		}
         
     }
 
@@ -71,13 +94,18 @@ public class Player{
     * Si on est au debut de la playlist, on recommence a la fin
     */
     public void previous(){
+		if(mCurrentPlayed > mPlayList.getMediaList().size()){
+			mCurrentPlayed--;
+		}else{
+			mCurrentPlayed = mPlayList.getMediaList().size()-1;
+		}
     }
     /**
     * Fonction d'acces a l'index du media qui joue 
     * @return int l'index du media qui joue presentement
     */
     public int getCurrentPlayed(){
-        return 0;
+        return mCurrentPlayed;
     }
     /**
     * Fonction permettant de changer la valeur de l'index du fichier qui joue presentement
@@ -85,6 +113,7 @@ public class Player{
     * @param pCurrentPlayed le nouvel index du media a faire jouer
     */
     public void setCurrentPlayed(int pCurrentPlayed){
+		mCurrentPlayed =pCurrentPlayed;
     }
 
     /**
@@ -95,6 +124,9 @@ public class Player{
     * @param pIdx l'index de l'item a ajouter dans la librairie de source
     */
     public void addToPlayList(int pLibrarySource, int pIdx){
+		if(pLibrarySource == MediaConstant.LOCAL){
+			mPlayList.add(mLocalLib.get(pIdx));
+		}
     }
     /**
     * Fonction permettant d'ajouter l'item de la librairie locale a l'index pIdx, a la 
@@ -111,6 +143,11 @@ public class Player{
     * @param pTypeLib le type de librairie (LOCAL, SERVER, PLAYLIST) pour laquelle on veut obtenir la taille
     */
     public int getSizeLibrary(int pTypeLib){
+		if(pTypeLib == MediaConstant.LOCAL){
+			return mLocalLib.getMediaList().size();
+		}else if(pTypeLib == MediaConstant.PLAYLIST){
+			return mPlayList.getMediaList().size();
+		}
         return 3;
     }
     /**
@@ -121,8 +158,7 @@ public class Player{
     * @return String[] les titres de chacune des colonnes qui sera affiches dans le gui
     */
     public String[] getBasicLibraryFieldInfo(){
-        String[] result = {"Titre", "Annee", "Duree"};
-        return result;
+        return mLocalLib.getBasicFieldInfo();
     }
     /**
     * Fonction permettatn d'obtenir, pour chacun des medias d'une librairie donnee (LOCAL, SERVER ou PLAYLIST), 
@@ -134,6 +170,12 @@ public class Player{
         String[][] result = {{"(item 1:)valeur colonne 1", "(item 1:)valeur colonne 2", "(item 1:)valeur colonne 3"},
             {"(item 2:)valeur colonne 1", "(item 2:)valeur colonne 2", "(item 2:)valeur colonne 3"}, 
             {"(item 2:)valeur colonne 1", "(item 2:)valeur colonne 2", "(item 2:)valeur colonne 3"}}; 
+           
+          if(pTypeLib == MediaConstant.LOCAL){
+			  result =   mLocalLib.getBasicLibraryInfo();
+		  }else if(pTypeLib == MediaConstant.PLAYLIST ){
+			  result =  mPlayList.getBasicLibraryInfo();
+		  }
         return result;
     }
     /**
@@ -144,7 +186,21 @@ public class Player{
     * @return String[] tous les champs d'informations disponibles pour le media donne 
     */
     public String[] getFullFieldMediaInfo(int pTypeLib, int pIdx){
-        String[] result = {"champ1", "champ2", "champ3", "champ4"};
+        String[] result = new String[6];
+        if(pTypeLib == MediaConstant.LOCAL){
+		
+			if(mLocalLib.getMediaList().get(pIdx) instanceof MediaVideo){
+				 result = mLocalLib.getVideoFieldInfo();
+			}else{
+				result = mLocalLib.getAudioFiledInfo();
+			}
+		}else if(pTypeLib == MediaConstant.PLAYLIST){
+			if(mLocalLib.getMediaList().get(pIdx) instanceof MediaVideo){
+				 result = mPlayList.getVideoFieldInfo();
+			}else{
+				result = mPlayList.getAudioFiledInfo();
+			}
+		}
         return result;
     }
     /**
@@ -155,7 +211,12 @@ public class Player{
     * @return String[] tous les champs d'informations disponibles pour le media donne 
     */
     public String[] getFullMediaInfo(int pTypeLib, int pIdx){
-        String[] result = {"valeur champ1", "valeur champ2", "valeur champ3", "valeur champ4"};
+        String[] result = {"valeur champ1", "valeur champ2", "valeur champ3", "valeur champ4", "valeur champ3", "valeur champ4"};
+        if(pTypeLib == MediaConstant.LOCAL){
+				 result = mLocalLib.getFullMediaInfo(pIdx);
+		}else if(pTypeLib == MediaConstant.PLAYLIST){
+			result = mPlayList.getFullMediaInfo(pIdx);
+		}
         return result;
     }
     /**
