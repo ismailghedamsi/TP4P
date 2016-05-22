@@ -69,9 +69,8 @@ public  class MediaVideo extends Media implements MediaConstant{
 	}
 	
 	public String toString(){
-		return super.toString()+"\nFramerate "+mFrameRate+"\nWidth "+mWidth+"\nHeight"+mHeight;
+		return super.toString()+"\nFramerate\n"+mFrameRate+"\nWidth\n"+mWidth+"\nHeight\n"+mHeight;
 	}
-
 	
 	  public static void main(String[] args) throws IOException{
 		Scanner pScan=null;
